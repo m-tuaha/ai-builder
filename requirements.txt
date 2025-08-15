@@ -1,6 +1,7 @@
 streamlit
 openai>=1.0.0
 streamlit-tags
+streamlit-cropper
 requests
 pillow
 replicate
