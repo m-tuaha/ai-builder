@@ -1500,8 +1500,7 @@ with tab2:
     # ---------- QUICK ACTIONS (Pillow) ----------
     elif mode == "Quick Actions":
         qa = st.selectbox("Choose an action",["Add Text Overlay", "Resize/Crop", "Color Swap (coming next)"],key="qa_choice")
-)
-
+        
         # ----- Source image: last generated or upload -----
         src_choice = st.radio("Source image", ["Use last generated image", "Upload new image"], horizontal=True)
         src_bytes = None
