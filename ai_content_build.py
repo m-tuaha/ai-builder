@@ -1815,7 +1815,7 @@ with tab2:
                     cropped = _st_cropper(
                         pil_src,
                         realtime_update=True,
-                        box_color="#00FF00",
+                        box_color="#00483b",
                         aspect_ratio=None,     # freeform crop
                         return_type="image",
                         key="rc_cropper"
