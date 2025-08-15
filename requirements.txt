@@ -1,10 +1,11 @@
 streamlit
 openai>=1.0.0
 streamlit-tags
-streamlit-cropper
+streamlit-cropper>=0.2.2
 requests
 pillow
 replicate
 supabase>=2.3.0,<3.0.0
 bcrypt>=4.0.0
 python-dateutil
+
