@@ -35,7 +35,7 @@
     "id": "object_remove",
     "title": "Obj Remove",
     "desc": "Remove an element and inpaint.",
-    "example": "Remove the street sign; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged."    
+    "example": "Remove the parrots from the branch; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged."    
     "preview_before": "public/examples/object_remove/before.webp",
     "preview_after":  "public/examples/object_remove/after.webp"
   },
