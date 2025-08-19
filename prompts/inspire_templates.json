@@ -27,7 +27,7 @@
     "id": "color_change",
     "title": "Color Shift",
     "desc": "Recolor one object; everything else unchanged.",
-    "example": "Change the car color from red to blue'; match reflections and shading; keep all other elements unchanged."    
+    "example": "Change the car color from red to blue'; match reflections and shading; keep all other elements unchanged.",    
     "preview_before": "public/examples/color_shift/before.webp",
     "preview_after":  "public/examples/color_shift/after.webp"
   },
@@ -35,7 +35,7 @@
     "id": "object_remove",
     "title": "Obj Remove",
     "desc": "Remove an element and inpaint.",
-    "example": "Remove the parrots from the branch; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged."    
+    "example": "Remove the parrots from the branch; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged.",   
     "preview_before": "public/examples/object_remove/before.webp",
     "preview_after":  "public/examples/object_remove/after.webp"
   },
@@ -43,7 +43,7 @@
     "id": "text_replace",
     "title": "Text Swap",
     "desc": "Change on-image text with typography preserved.",
-    "example": "Replace 'SALE' with 'SOLD'; keeping the same font style, weight, size, color, and alignment."    
+    "example": "Replace 'SALE' with 'SOLD'; keeping the same font style, weight, size, color, and alignment.",  
     "preview_before": "public/examples/text_swap/before.webp",
     "preview_after":  "public/examples/text_swap/after.webp"
   },
@@ -51,7 +51,7 @@
     "id": "mockup",
     "title": "Mockup",
     "desc": "Place this design on a product mockup.",
-    "example": "Place this design on the front of a black coffee mug for a commercial product shot. Use green background."    
+    "example": "Place this design on the front of a black coffee mug for a commercial product shot. Use green background.",    
     "preview_before": "public/examples/mockups/before.webp",
     "preview_after":  "public/examples/mockups/after.webp"
   }
