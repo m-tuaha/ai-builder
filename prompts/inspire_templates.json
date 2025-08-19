@@ -3,7 +3,7 @@
     "id": "style_swap",
     "title": "Style Swap",
     "desc": "Convert the look while keeping layout intact.",
-    "example": "Convert to 1990s anime; keep original composition and subject placement; retain lighting continuity; apply 1990s anime traits only."
+    "example": "Convert to 1990s anime; keep original composition and subject placement; retain lighting continuity; apply 1990s anime traits only.",
     "preview_before": "public/examples/style_swap/before.webp",
     "preview_after":  "public/examples/style_swap/after.webp",
     "full_before":   "public/examples/style_swap/before_full.webp",
