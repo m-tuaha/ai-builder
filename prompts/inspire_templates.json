@@ -1,0 +1,44 @@
+[
+  {
+    "id": "style_swap",
+    "title": "Style Swap",
+    "desc": "Convert the look while keeping layout intact.",
+    "example": "Convert to 1990s anime; keep original composition and subject placement; retain lighting continuity; apply 1990s anime traits only."
+  },
+  {
+    "id": "style_copy",
+    "title": "Style Copy",
+    "desc": "Use uploaded picture as a template for new picture.",
+    "example": "Using this style, a bunny, a dog and a cat are having a tea party seated around a small white table"
+  },
+  {
+    "id": "background_swap",
+    "title": "BG Swap",
+    "desc": "Replace the scene, lock the composition/camera.",
+    "example": "Change the background to a sunny beach while keeping the person in the exact same position, scale, pose; maintain identical camera angle, framing, and perspective; only replace the environment."
+  },
+  {
+    "id": "color_change",
+    "title": "Color Shift",
+    "desc": "Recolor one object; everything else unchanged.",
+    "example": "Change the car color from red to blue'; match reflections and shading; keep all other elements unchanged."
+  },
+  {
+    "id": "object_remove",
+    "title": "Obj Remove",
+    "desc": "Remove an element and inpaint.",
+    "example": "Remove the street sign; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged."
+  },
+  {
+    "id": "text_replace",
+    "title": "Text Swap",
+    "desc": "Change on-image text with typography preserved.",
+    "example": "Replace 'SALE' with 'SOLD'; keeping the same font style, weight, size, color, and alignment."
+  },
+  {
+    "id": "mockup",
+    "title": "Mockup",
+    "desc": "Place this design on a product mockup.",
+    "example": "Place this design on the front of a black coffee mug"
+  }
+]
