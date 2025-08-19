@@ -5,45 +5,54 @@
     "desc": "Convert the look while keeping layout intact.",
     "example": "Convert to 1990s anime; keep original composition and subject placement; retain lighting continuity; apply 1990s anime traits only.",
     "preview_before": "public/examples/style_swap/before.webp",
-    "preview_after":  "public/examples/style_swap/after.webp",
-    "full_before":   "public/examples/style_swap/before_full.webp",
-    "full_after":    "public/examples/style_swap/after_full.webp",
-    "caption": "90s anime style transfer example"
+    "preview_after":  "public/examples/style_swap/after.webp"
   },
   {
     "id": "style_copy",
     "title": "Style Copy",
     "desc": "Use uploaded picture as a template for new picture.",
-    "example": "Using this style, a bunny, a dog and a cat are having a tea party seated around a small white table"
+    "example": "Using this style, a bunny, a dog and a cat are having a tea party seated around a small white table",
+    "preview_before": "public/examples/style_copy/before.webp",
+    "preview_after":  "public/examples/style_copy/after.webp"
   },
   {
     "id": "background_swap",
     "title": "BG Swap",
     "desc": "Replace the scene, lock the composition/camera.",
-    "example": "Change the background to a sunny beach while keeping the person in the exact same position, scale, pose; maintain identical camera angle, framing, and perspective; only replace the environment."
+    "example": "Change the background to a sunny beach while keeping the person in the exact same position, scale, pose; maintain identical camera angle, framing, and perspective; only replace the environment.",
+    "preview_before": "public/examples/bg_swap/before.webp",
+    "preview_after":  "public/examples/bg_swap/after.webp"
   },
   {
     "id": "color_change",
     "title": "Color Shift",
     "desc": "Recolor one object; everything else unchanged.",
-    "example": "Change the car color from red to blue'; match reflections and shading; keep all other elements unchanged."
+    "example": "Change the car color from red to blue'; match reflections and shading; keep all other elements unchanged."    
+    "preview_before": "public/examples/color_shift/before.webp",
+    "preview_after":  "public/examples/color_shift/after.webp"
   },
   {
     "id": "object_remove",
     "title": "Obj Remove",
     "desc": "Remove an element and inpaint.",
-    "example": "Remove the street sign; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged."
+    "example": "Remove the street sign; seamlessly inpaint the background to match surrounding textures and lighting; keep composition unchanged."    
+    "preview_before": "public/examples/object_remove/before.webp",
+    "preview_after":  "public/examples/object_remove/after.webp"
   },
   {
     "id": "text_replace",
     "title": "Text Swap",
     "desc": "Change on-image text with typography preserved.",
-    "example": "Replace 'SALE' with 'SOLD'; keeping the same font style, weight, size, color, and alignment."
+    "example": "Replace 'SALE' with 'SOLD'; keeping the same font style, weight, size, color, and alignment."    
+    "preview_before": "public/examples/text_swap/before.webp",
+    "preview_after":  "public/examples/text_swap/after.webp"
   },
   {
     "id": "mockup",
     "title": "Mockup",
     "desc": "Place this design on a product mockup.",
-    "example": "Place this design on the front of a black coffee mug for a commercial product shot. Use green background."
+    "example": "Place this design on the front of a black coffee mug for a commercial product shot. Use green background."    
+    "preview_before": "public/examples/mockups/before.webp",
+    "preview_after":  "public/examples/mockups/after.webp"
   }
 ]
