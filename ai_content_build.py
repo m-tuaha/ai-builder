@@ -1594,7 +1594,7 @@ with tab2:
             else:
                 input_bytes, input_mime = None, None
 
-        st.markdown("### Prompt Templates (optional)")
+        st.markdown("### Prompt Templates")
         templates = load_inspire_templates()
         if templates:
             cols = st.columns(2)
