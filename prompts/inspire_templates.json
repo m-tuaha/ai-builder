@@ -27,7 +27,7 @@
     "id": "color_change",
     "title": "Color Shift",
     "desc": "Recolor one object; everything else unchanged.",
-    "example": "Change the car color from red to blue'; match reflections and shading; keep all other elements unchanged.",    
+    "example": "Change the car color from red to blue; match reflections and shading; keep all other elements unchanged.",    
     "preview_before": "public/examples/color_shift/before.webp",
     "preview_after":  "public/examples/color_shift/after.webp"
   },
