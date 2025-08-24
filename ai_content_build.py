@@ -2262,7 +2262,7 @@ with tab2:
 
     # Generate
     with col2:
-        if st.button("🎨 Generate", key="generate_img_btn", use_container_width=True):
+        if mode != "Quick Actions" and st.button("🎨 Generate", key="generate_img_btn", use_container_width=True):
             # Daily image quota (10/day, successes only)
             try:
                 used = count_success_images_today(st.session_state.auth_user["id"])
