@@ -3205,22 +3205,23 @@ with tab3:
                     except ValueError:
                         text_color = "#000000"
                 with col:
+
                     st.markdown(
-                        (
-                            "<div style="
-                            "border:1px solid rgba(0,0,0,0.15);"
-                            " border-radius:6px;"
-                            " padding:6px;"
-                            " text-align:center;"
-                            " font-size:0.75rem;"
-                            f" background:{color};"
-                            f" color:{text_color};"
-                            "">"
-                            f"{color}"
-                            "</div>"
-                        ),
+                        f"""
+                        <div style="
+                            border:1px solid rgba(0,0,0,0.15);
+                            border-radius:6px;
+                            padding:6px;
+                            text-align:center;
+                            font-size:0.75rem;
+                            background:{color};
+                            color:{text_color};
+                        ">
+                            {color}
+                        </div>
+                        """,
                         unsafe_allow_html=True,
-                    )
+                    )                
 
         st.radio(
             "Generation Engine",
