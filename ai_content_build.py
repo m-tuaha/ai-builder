@@ -1499,7 +1499,7 @@ def _save_svg_to_storage(svg_bytes: bytes, filename: str) -> str:
     sb.storage.from_("images").upload(
         path,
         svg_bytes,
-        {"content-type": "image/svg+xml", "upsert": True},
+        {"content-type": "image/svg+xml", "upsert": "true"},
     )
     return sb.storage.from_("images").get_public_url(path)
 
