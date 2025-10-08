@@ -3218,7 +3218,6 @@ with tab2:
                         use_container_width=True,
                         output_format="SVG",
                         clamp=True,
-                        key=f"svg_preview_{st.session_state.get('svg_result_key') or 'upload'}",
                     )
                     if st.session_state.get("svg_result_bytes"):
                         st.download_button(
@@ -3662,7 +3661,6 @@ with tab2:
                                 use_container_width=True,
                                 output_format="SVG",
                                 clamp=True,
-                                key=f"svg_preview_{st.session_state.get('svg_result_key') or 'generated'}",
                             )
                             if st.session_state.get("svg_result_bytes"):
                                 st.download_button(
