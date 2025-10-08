@@ -3266,9 +3266,9 @@ with tab3:
             "Generation Engine",
             options=["Model A", "Model B"],
             format_func=lambda opt: (
-                "Model A (Quality) – flux-kontext-max"
+                "Model A (Flux)"
                 if opt == "Model A"
-                else "Model B (Speed) – nano-banana"
+                else "Model B (Gemini)"
             ),
             key="ph_engine",
         )
