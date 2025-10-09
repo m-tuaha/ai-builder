@@ -731,10 +731,10 @@ def _replicate_vectorize_sync(image_url: str, wait_seconds: int = 60) -> str:
     except ValueError:
         data = None
 
-    if resp.status_code != 200:
+    if not 200 <= resp.status_code < 300:
         error_msg = "Unknown error"
         if isinstance(data, dict):
-            error_msg = data.get("error") or data.get("detail") or str(data)
+            error_msg = data.get("error") or data.get("detail") or data.get("status")
         raise Exception(f"Replicate vectorize HTTP {resp.status_code}: {error_msg}")
 
     if not isinstance(data, dict):
@@ -742,8 +742,12 @@ def _replicate_vectorize_sync(image_url: str, wait_seconds: int = 60) -> str:
 
     status = data.get("status")
     if status != "succeeded":
-        detail = data.get("error") or data.get("status") or "unknown"
-        raise Exception(f"Vectorize request returned status '{status}': {detail}")
+        error_text = data.get("error") or data.get("detail")
+        if status in {"starting", "processing", "pending", "queued"} and not error_text:
+            raise Exception(f"Replicate vectorize is {status.replace('_', ' ')}; please retry.")
+        if error_text:
+            raise Exception(f"Replicate vectorize returned status '{status}': {error_text}")
+        raise Exception(f"Replicate vectorize returned status '{status}'.")
 
     svg_url = _extract_first_http_url(data.get("output"))
     if not svg_url:
