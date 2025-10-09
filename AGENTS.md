@@ -1,6 +1,8 @@
 Project
 
-AI Content Builder (Streamlit, single-file: ai_content_build.py). Uses OpenAI (text), Replicate [flux kontext-max as Model A and Google's Nano-Banana as MOdel B] (image), Supabase (storage + logs). Roles: tester (Text & Image), admin (Admin only; cannot generate). Times in Admin = Asia/Karachi, DB = UTC.
+AI Content Builder (hosted on Streamlit community cloud, single-file: ai_content_build.py). Uses OpenAI (text), Replicate [flux kontext-max as Model A and Google's Nano-Banana as MOdel B] (image), Supabase (storage + logs). Roles: tester (Text & Image), admin (Admin only; cannot generate). Times in Admin = Asia/Karachi, DB = UTC.
+
+Follow coding guidelines related to Streamlit hosted webapps.
 
 What you (the agent) should do
 
