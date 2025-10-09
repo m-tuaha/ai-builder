@@ -721,6 +721,8 @@ def _replicate_vectorize_sync(image_url: str, wait_seconds: int = 60) -> str:
     payload = {"input": {"image": image_url}}
     api_endpoint = "https://api.replicate.com/v1/models/recraft-ai/recraft-vectorize/predictions"
 
+    start_time = time.time()
+    
     try:
         resp = requests.post(api_endpoint, headers=headers, json=payload, timeout=wait_seconds + 10)
     except requests.exceptions.RequestException as e:
@@ -740,11 +742,41 @@ def _replicate_vectorize_sync(image_url: str, wait_seconds: int = 60) -> str:
     if not isinstance(data, dict):
         raise Exception("Unexpected response from Replicate vectorize API.")
 
+    prediction_id = data.get("id") if isinstance(data, dict) else None
+    urls = data.get("urls") if isinstance(data, dict) else None
+    get_url = None
+    if isinstance(urls, dict):
+        get_url = urls.get("get")
+    if not get_url and prediction_id:
+        get_url = f"{api_endpoint}/{prediction_id}"
+
+    pending_states = {"starting", "processing", "pending", "queued"}
     status = data.get("status")
+
+    while status in pending_states:
+        elapsed = time.time() - start_time
+        if elapsed >= wait_seconds:
+            raise TimeoutError(f"Replicate vectorize request timed out after {wait_seconds} seconds.")
+        if not get_url:
+            raise Exception("Replicate vectorize polling URL is missing.")
+        time.sleep(1)
+        try:
+            poll_resp = requests.get(get_url, headers=headers, timeout=10)
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Replicate vectorize polling failed: {e}") from e
+
+        try:
+            data = poll_resp.json()
+        except ValueError:
+            raise Exception("Unexpected polling response from Replicate vectorize API.")
+
+        status = data.get("status") if isinstance(data, dict) else None
+
+    if not isinstance(data, dict):
+        raise Exception("Unexpected response from Replicate vectorize API.")
+        
     if status != "succeeded":
         error_text = data.get("error") or data.get("detail")
-        if status in {"starting", "processing", "pending", "queued"} and not error_text:
-            raise Exception(f"Replicate vectorize is {status.replace('_', ' ')}; please retry.")
         if error_text:
             raise Exception(f"Replicate vectorize returned status '{status}': {error_text}")
         raise Exception(f"Replicate vectorize returned status '{status}'.")
