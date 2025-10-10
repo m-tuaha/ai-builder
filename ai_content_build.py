@@ -1171,7 +1171,10 @@ st.markdown(f"""
             background-color: white !important;
             border-radius: 24px;
             padding: 2em 3em;
-            margin-top: 0em;
+            width: 80% !important;
+            max-width: none !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
             box-shadow: 0 0 20px {GMS_LAVENDER};
         }}
         .stButton>button, button[kind="primary"] {{
