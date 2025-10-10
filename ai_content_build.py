@@ -3595,7 +3595,7 @@ with tab3:
     st.markdown(
         f"""
         <style>
-        div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] > div > div {
+        div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] > div > div {{
             width: min(60%, 1200px);
             max-width: 1200px;
             margin-left: auto;
@@ -3606,11 +3606,11 @@ with tab3:
             background: white;
             border-radius: 24px;
             box-shadow: 0 0 20px {GMS_LAVENDER};
-        }
-        div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] div[data-testid="column"] {
+        }}
+        div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] div[data-testid="column"] {{
             padding-left: 1rem;
             padding-right: 1rem;
-        }
+        }}
         </style>
         """,
         unsafe_allow_html=True,
