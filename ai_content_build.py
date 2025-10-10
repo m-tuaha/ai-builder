@@ -3593,7 +3593,7 @@ with tab2:
 with tab3:
     uid = st.session_state.get("auth_user", {}).get("id")
     st.markdown(
-        """
+        f"""
         <style>
         div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] > div > div {
             width: min(60%, 1200px);
