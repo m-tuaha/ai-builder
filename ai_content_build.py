@@ -1112,7 +1112,7 @@ st.markdown(
       :root { --card-max: 1200px; }
 
       .form-card {
-        background:#fff !important;
+        background:{GMS_GREEN} !important;
         border-radius:24px !important;
         padding:2rem 3rem 3rem !important;
         box-shadow:0 10px 30px rgba(0,0,0,.06) !important;
