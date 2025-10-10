@@ -1134,7 +1134,7 @@ st.markdown(
 # ---- Custom CSS for GMS color palette and rounded corners ----
 st.markdown(f"""
     <style>
-        .stApp {{ background-color: {GMS_TEAL}; }}
+        .stApp {{ background-color: #fff; }}
         /* Title styling - outside the block container */
         .page-title {{
             color: {GMS_GREEN};
