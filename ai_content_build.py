@@ -3596,15 +3596,16 @@ with tab3:
         """
         <style>
         div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] > div > div {
-            max-width: min(100%, 1400px);
-            width: 100%;
+            width: min(80%, 1400px);
+            max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
             padding-left: 1rem;
             padding-right: 1rem;
             padding-bottom: 3rem;
-            background: transparent;
-            box-shadow: none;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 0 20px {GMS_LAVENDER};
         }
         div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] div[data-testid="column"] {
             padding-left: 1rem;
