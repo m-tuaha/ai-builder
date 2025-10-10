@@ -1105,6 +1105,32 @@ GMS_GREEN = "#22B573"
 GMS_BLUE = "#C7E7FD"
 GMS_LAVENDER = "#D5D7FB"
 
+# --- GLOBAL STYLES: durable card wrapper ---
+st.markdown(
+    """
+    <style>
+      :root { --card-max: 1200px; }
+
+      .form-card {
+        background:#fff !important;
+        border-radius:24px !important;
+        padding:2rem 3rem 3rem !important;
+        box-shadow:0 10px 30px rgba(0,0,0,.06) !important;
+        margin:0 auto !important;
+        width:min(70vw, var(--card-max)) !important;
+      }
+
+      @media (max-width: 768px) {
+        .form-card { width:92vw !important; padding:1rem 1rem 1.5rem !important; }
+      }
+
+      /* Optional: keep overall page padding pleasant */
+      .block-container { padding-top:1.5rem; padding-bottom:3rem; }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # ---- Custom CSS for GMS color palette and rounded corners ----
 st.markdown(f"""
     <style>
@@ -1167,20 +1193,6 @@ st.markdown(f"<h1 class='page-title'>AI Content Builder</h1>", unsafe_allow_html
 # ---- Form container CSS ----
 st.markdown(f"""
     <style>
-        .block-container {{
-            padding: 2em 3em 4em;
-        }}
-        div[data-testid="stTabContent"][aria-label="📝 Text Generator"] > div > div,
-        div[data-testid="stTabContent"][aria-label="🎨 Image Generator"] > div > div {{
-            background-color: white;
-            border-radius: 24px;
-            padding: 2em 3em;
-            margin-top: 0em;
-            box-shadow: 0 0 20px {GMS_LAVENDER};
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }}
         .stButton>button, button[kind="primary"] {{
             background-color: {GMS_GREEN} !important;
             color: white !important;
@@ -1867,6 +1879,9 @@ tab1, tab2, tab3 = st.tabs(["📝 Text Generator", "🎨 Image Generator", "🛍
 # TEXT TAB START — OTT + Social (routing + schemas)
 # ==============================================
 with tab1:
+
+    # --- Form card wrapper (Text Generator) ---
+    st.markdown('<div class="form-card">', unsafe_allow_html=True)    
     
     # --- Campaign Type selector (outside the form so it reruns immediately) ---
     if "campaign_type" not in st.session_state:
@@ -2405,12 +2420,17 @@ with tab1:
                 st.error(f"Edit Error: {e}")
                 st.error(f"Error details: {str(e)}")
 
+    # --- Close form card wrapper (Text Generator) ---
+    st.markdown("</div>", unsafe_allow_html=True)
+
 # ---- IMAGE GENERATOR TAB ----
 # ==============================================
 # IMAGE TAB START — Keep Replicate/Flux + upload; add UI only
 # (Non-executable guidance. Do not remove. Keep indentation consistent.)
 # ==============================================
 with tab2:
+    # --- Form card wrapper (Image Generator) ---
+    st.markdown('<div class="form-card">', unsafe_allow_html=True)
     st.subheader("Image Generation Details")
 
     # Modes: Create (text->image), Inspire (style copy from single template), Combine Images (multi-image model)
@@ -3590,31 +3610,13 @@ with tab2:
     if "generation_error" not in st.session_state:
         st.session_state.generation_error = None
 
+    # --- Close form card wrapper (Image Generator) ---
+    st.markdown("</div>", unsafe_allow_html=True)
+    
 with tab3:
     uid = st.session_state.get("auth_user", {}).get("id")
-    st.markdown(
-        f"""
-        <style>
-        div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] > div > div {{
-            width: min(60%, 1200px);
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            padding-bottom: 3rem;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 0 20px {GMS_LAVENDER};
-        }}
-        div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] div[data-testid="column"] {{
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True,
-    )
+    # --- Form card wrapper (Product Hero) ---
+    st.markdown('<div class="form-card">', unsafe_allow_html=True)
     existing_gallery = st.session_state.get("ph_gallery", [])
     if (
         st.session_state.get("ph_selected_idx") is not None
@@ -3965,7 +3967,10 @@ Photographic, crisp details, commercial polish, square 1:1, social-media ready."
                 st.session_state.ph_pending_mode = "Inspire"
                 st.success(
                     "Image ready in Inspire mode. Switch to 🎨 Image Generator → Inspire to continue."
-                )        
+                )
+
+    # --- Close form card wrapper (Product Hero) ---
+    st.markdown("</div>", unsafe_allow_html=True)      
 
 # ---- Footer ----
 st.markdown("---")
