@@ -1171,7 +1171,7 @@ st.markdown(f"""
             background-color: white !important;
             border-radius: 24px;
             padding: 2em 3em;
-            width: 80% !important;
+            width: 65% !important;
             max-width: none !important;
             margin-left: auto !important;
             margin-right: auto !important;
