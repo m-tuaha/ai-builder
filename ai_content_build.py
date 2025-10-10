@@ -3596,7 +3596,7 @@ with tab3:
         """
         <style>
         div[data-testid="stTabContent"][aria-label="🛍️ Product Hero"] > div > div {
-            width: min(80%, 1400px);
+            width: min(60%, 1400px);
             max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
