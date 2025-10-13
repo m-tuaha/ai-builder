@@ -2425,6 +2425,8 @@ with tab2:
         )
 
         current_refined = st.session_state.get("refined_prompt", "")
+        if "image_editable_prompt" not in st.session_state:
+            st.session_state.image_editable_prompt = current_refined        
         editable_prompt = st.text_area(
             "Refined prompt (editable)",
             value=current_refined,
@@ -2569,6 +2571,7 @@ with tab2:
         )        
 
         st.markdown("### Prompt Templates (optional)")
+        ta_key = f"inspire_text_area__{st.session_state.get('img_mode','Inspire')}__{st.session_state.get('auth_user',{}).get('id','')}"        
         templates = load_inspire_templates()
         if templates:
             cols = st.columns(2)
@@ -2587,10 +2590,10 @@ with tab2:
                     if st.button("Use Example", key=f"use_{tmpl['id']}"):
                         ex = (tmpl.get("example") or "").strip()
                         if ex:
-                            st.session_state.inspire_prompt = ex        
+                            st.session_state.inspire_prompt = ex
+                            st.session_state[ta_key] = ex     
 
         # Make the text area key unique to this mode (and user) to avoid collisions
-        ta_key = f"inspire_text_area__{st.session_state.get('img_mode','Inspire')}__{st.session_state.get('auth_user',{}).get('id','')}"
         final_prompt = st.text_area(
             "Prompt for Kontext",
             value=st.session_state.inspire_prompt,
@@ -3224,6 +3227,7 @@ with tab2:
                         st.error(f"❌ {refined}")
                     else:
                         st.session_state.refined_prompt = refined
+                        st.session_state.image_editable_prompt = refined                        
                         st.success("✅ Prompt refined!")
                         try:
                             # ==============================================
