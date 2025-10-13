@@ -2425,8 +2425,8 @@ with tab2:
         )
 
         current_refined = st.session_state.get("refined_prompt", "")
-        if "image_editable_prompt" not in st.session_state:
-            st.session_state.image_editable_prompt = current_refined        
+        if st.session_state.get("image_editable_prompt", "") != current_refined:
+            st.session_state.image_editable_prompt = current_refined     
         editable_prompt = st.text_area(
             "Refined prompt (editable)",
             value=current_refined,
@@ -3226,8 +3226,7 @@ with tab2:
                     if refined.startswith("ERROR:"):
                         st.error(f"❌ {refined}")
                     else:
-                        st.session_state.refined_prompt = refined
-                        st.session_state.image_editable_prompt = refined                        
+                        st.session_state.refined_prompt = refined                 
                         st.success("✅ Prompt refined!")
                         try:
                             # ==============================================
