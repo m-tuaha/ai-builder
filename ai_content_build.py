@@ -2556,7 +2556,6 @@ with tab2:
                     st.link_button(
                         "Download SVG",
                         st.session_state.svg_result_url,
-                        key="inspire_svg_download_btn",
                     )
                     st.caption("Best for flat illustrations; photos may not vectorize well.")
                 
