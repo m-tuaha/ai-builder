@@ -41,6 +41,7 @@ import io
 import colorsys  # for RGB↔HSV
 import hashlib
 import random
+from streamlit.components.v1 import html
 
 #You can Disable streamlit file watching function by uncommenting below line:
 #st.set_option("server.fileWatcherType", "none")
@@ -1105,20 +1106,21 @@ GMS_GREEN = "#22B573"
 GMS_BLUE = "#C7E7FD"
 GMS_LAVENDER = "#D5D7FB"
 
-    # --- GL chatbot widget (loads once per session) -------------------
-    if not st.session_state.get("_chatbot_widget_loaded"):
-        st.session_state["_chatbot_widget_loaded"] = True
-        html(
-            """
-            <script
-              src="https://app.chatbots.gms-worldwide.ch/widget/common.js"
-              async
-              data-widget-id="af0fd971719e67d7a9b40f4dasas1qw4711b1">
-            </script>
-            """,
-            height=0, width=0
-        )
-    # --------------------------------------------------------------------------
+# --- Chatbot widget (loads once per session) -------------------
+if "_chatbot_widget_loaded" not in st.session_state:
+    st.session_state["_chatbot_widget_loaded"] = True
+    html(
+        """
+        <script
+          src="https://app.chatbots.gms-worldwide.ch/widget/common.js"
+          async
+          data-widget-id="af0fd971719e67d7a9b40f4dasas1qw4711b1">
+        </script>
+        """,
+        height=0,
+        width=0
+    )
+# ---------------------------------------------------------------
 
 # ---- Custom CSS for GMS color palette and rounded corners ----
 st.markdown(f"""
