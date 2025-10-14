@@ -41,7 +41,6 @@ import io
 import colorsys  # for RGB↔HSV
 import hashlib
 import random
-from streamlit.components.v1 import html
 
 #You can Disable streamlit file watching function by uncommenting below line:
 #st.set_option("server.fileWatcherType", "none")
@@ -1106,10 +1105,10 @@ GMS_GREEN = "#22B573"
 GMS_BLUE = "#C7E7FD"
 GMS_LAVENDER = "#D5D7FB"
 
-# --- Chatbot widget (loads once per session) -------------------
+# --- Chatbot widget (inject into top-level DOM) -------------------
 if "_chatbot_widget_loaded" not in st.session_state:
     st.session_state["_chatbot_widget_loaded"] = True
-    html(
+    st.markdown(
         """
         <script
           src="https://app.chatbots.gms-worldwide.ch/widget/common.js"
@@ -1117,8 +1116,7 @@ if "_chatbot_widget_loaded" not in st.session_state:
           data-widget-id="af0fd971719e67d7a9b40f4dasas1qw4711b1">
         </script>
         """,
-        height=0,
-        width=0
+        unsafe_allow_html=True
     )
 # ---------------------------------------------------------------
 
