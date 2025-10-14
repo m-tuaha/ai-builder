@@ -1105,21 +1105,6 @@ GMS_GREEN = "#22B573"
 GMS_BLUE = "#C7E7FD"
 GMS_LAVENDER = "#D5D7FB"
 
-# --- Chatbot widget (inject into top-level DOM) -------------------
-if "_chatbot_widget_loaded" not in st.session_state:
-    st.session_state["_chatbot_widget_loaded"] = True
-    st.markdown(
-        """
-        <script
-          src="https://app.chatbots.gms-worldwide.ch/widget/common.js"
-          async
-          data-widget-id="af0fd971719e67d7a9b40f4dasas1qw4711b1">
-        </script>
-        """,
-        unsafe_allow_html=True
-    )
-# ---------------------------------------------------------------
-
 # ---- Custom CSS for GMS color palette and rounded corners ----
 st.markdown(f"""
     <style>
@@ -1420,6 +1405,58 @@ def _vectorize_and_store(image_url: str) -> tuple[str, str, int, int]:
     return svg_key, supabase_url, len(svg_bytes), runtime_ms
 
 
+def _resolve_vectorize_prompt(source_label: str) -> str:
+    prompt_candidates = [
+        st.session_state.get("refined_prompt"),
+        st.session_state.get("image_raw_prompt"),
+        st.session_state.get("image_editable_prompt"),
+        st.session_state.get("inspire_prompt"),
+        st.session_state.get("img_prompt_combine"),
+    ]
+    for candidate in prompt_candidates:
+        if isinstance(candidate, str):
+            stripped = candidate.strip()
+            if stripped:
+                return stripped
+
+    if source_label == "upload":
+        stored_svg = st.session_state.get("qa_svg_upload_file") or {}
+        for key in ("name", "hash", "url"):
+            value = stored_svg.get(key)
+            if isinstance(value, str):
+                stripped = value.strip()
+                if stripped:
+                    label = {
+                        "name": "name",
+                        "hash": "hash",
+                        "url": "url",
+                    }.get(key, key)
+                    return f"[upload {label}] {stripped}"
+
+    if source_label:
+        return f"[vectorize source] {source_label}"
+
+    return ""
+
+
+def _record_vectorize_image(svg_key: str, svg_url: str, byte_count: int, user_id: str | None, prompt_text: str):
+    if not sb or not user_id:
+        return
+    row = {
+        "id": svg_key,
+        "user_id": user_id,
+        "url": svg_url,
+        "bytes": byte_count,
+        "mode": "vectorize",
+        "model": "recraft-ai/recraft-vectorize",
+        "prompt": prompt_text or "",
+    }
+    try:
+        sb.table("images").insert(row).execute()
+    except Exception:
+        pass
+
+        
 def _run_vectorize_flow(image_url: str, source_label: str, user_id: str | None, *, update_quick_actions: bool = False):
     svg_key = None
     svg_url = None
@@ -1447,6 +1484,9 @@ def _run_vectorize_flow(image_url: str, source_label: str, user_id: str | None, 
     if update_quick_actions:
         st.session_state.qa_svg_result_url = svg_url
 
+    prompt_text = _resolve_vectorize_prompt(source_label)
+    _record_vectorize_image(svg_key, svg_url, byte_count, user_id, prompt_text)
+    
     meta = {
         "file": f"{svg_key}.svg",
         "url": svg_url,
