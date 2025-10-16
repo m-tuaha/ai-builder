@@ -2493,7 +2493,7 @@ with tab2:
             st.session_state.refined_prompt = editable_prompt
             
         # --- Engine selection for Create mode ---
-        st.session_state.setdefault("create_engine", "Model A")
+        st.session_state.setdefault("create_engine", "Model B")
         st.selectbox(
             "Engine",
             ["Model A", "Model B"],
@@ -2617,7 +2617,7 @@ with tab2:
                     st.caption("Best for flat illustrations; photos may not vectorize well.")
                 
         # --- Engine selection for Inspire mode ---
-        st.session_state.setdefault("inspire_engine", "Model A")
+        st.session_state.setdefault("inspire_engine", "Model B")
         st.selectbox(
             "Engine",
             ["Model A", "Model B"],
@@ -2650,7 +2650,7 @@ with tab2:
 
         # Make the text area key unique to this mode (and user) to avoid collisions
         final_prompt = st.text_area(
-            "Prompt for Kontext",
+            "Prompt for Image Generation",
             value=st.session_state.inspire_prompt,
             placeholder="Type your own prompt here, or use a template above",
             height=120,
@@ -2710,7 +2710,7 @@ with tab2:
             )
             multi_files = list(multi_files)[:allowed_uploads]
 
-        st.session_state.setdefault("combine_engine", "Model A")
+        st.session_state.setdefault("combine_engine", "Model B")
         st.selectbox(
             "Engine",
             ["Model A", "Model B"],
@@ -3335,7 +3335,7 @@ with tab2:
                         if not prompt_to_send:
                             raise Exception("No prompt available.")
     
-                        _engine = st.session_state.get("create_engine", "Model A")
+                        _engine = st.session_state.get("create_engine", "Model B")
                         if "Model B" in _engine:
                             # Gemini on Replicate ignores AR/seed/boost; force PNG for storage consistency
                             img_bytes = generate_gemini_replicate(
@@ -3363,7 +3363,7 @@ with tab2:
                         b64 = base64.b64encode(input_bytes).decode()
                         uri = f"data:{input_mime};base64,{b64}"
     
-                        _ieng = st.session_state.get("inspire_engine", "Model A")
+                        _ieng = st.session_state.get("inspire_engine", "Model B")
                         if "Model B" in _ieng:
                             # Force PNG for consistency; Nano-Banana ignores AR/Seed/Boost
                             img_bytes = generate_nano_banana_replicate(
@@ -3427,7 +3427,7 @@ with tab2:
                         if not st.session_state.get("img_prompt_combine", "").strip():
                             raise Exception("Please enter a prompt.")
                             
-                        engine_choice = st.session_state.get("combine_engine", "Model A")
+                        engine_choice = st.session_state.get("combine_engine", "Model B")
     
                         if "Model B" in engine_choice:
                             data_urls = []
@@ -3486,20 +3486,20 @@ with tab2:
                         if mode == "Create":
                             _model_used = (
                                 "gemini-2.5-flash-image"
-                                if st.session_state.get("create_engine","Model A") == "Model B"
+                                if st.session_state.get("create_engine","Model B") == "Model B"
                                 else "flux-1.1-pro"
                         )
                         
                         elif mode == "Inspire":
                             _model_used = (
                                 "nano-banana"
-                                if st.session_state.get("inspire_engine","Model A") == "Model B"
+                                if st.session_state.get("inspire_engine","Model B") == "Model B"
                                 else "flux-kontext-max"
                             )
                         elif mode == "Combine Images":
                             _model_used = (
                                 "nano-banana"
-                                if st.session_state.get("combine_engine","Model A") == "Model B"
+                                if st.session_state.get("combine_engine","Model B") == "Model B"
                                 else "flux-kontext-multi"
                             )
                         else:
@@ -3524,7 +3524,7 @@ with tab2:
                         # ==============================================
                         adv = {}
                         if _mode_key == "create":
-                            _engine = st.session_state.get("create_engine","Model A")
+                            _engine = st.session_state.get("create_engine","Model B")
                             adv = {
                                 "engine": ("gemini" if "Model B" in _engine else "flux"),
                                 "aspect": st.session_state.get("create_aspect"),
@@ -3535,7 +3535,7 @@ with tab2:
                             if "Model B" in _engine:
                                 adv["ignored_params"] = ["aspect","seed","prompt_upsampling"]
                         elif _mode_key == "inspire":
-                            _ieng = st.session_state.get("inspire_engine","Model A")
+                            _ieng = st.session_state.get("inspire_engine","Model B")
                             adv = {
                                 "engine": ("nano-banana" if "Model B" in _ieng else "flux"),
                                 "aspect": st.session_state.get("inspire_aspect"),
@@ -3549,7 +3549,7 @@ with tab2:
                             if "Model B" in _ieng:
                                 adv["ignored_params"] = ["aspect","seed","prompt_upsampling"]
                         elif _mode_key == "combine":
-                            _ceng = st.session_state.get("combine_engine","Model A")
+                            _ceng = st.session_state.get("combine_engine","Model B")
                             adv = {
                                 "engine": ("nano-banana" if "Model B" in _ceng else "flux"),
                                 "aspect": st.session_state.get("combine_aspect"),
