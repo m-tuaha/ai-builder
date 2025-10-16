@@ -1169,8 +1169,24 @@ st.markdown(f"<h1 class='page-title'>AI Content Builder</h1>", unsafe_allow_html
 if "chat_widget_loaded" not in st.session_state:
     html(
         """
-        <script src="https://app.chatbots.gms-worldwide.ch/widget/common.js" async data-widget-id="af0fd971719e67d7a9b40f4a7c4711b1"></script>
-        """,
+        <script>
+        (function() {
+            const PARENT = window.parent;
+            if (!PARENT || !PARENT.document) {
+                return;
+            }
+            const SCRIPT_ID = "gms-chat-widget-loader";
+            if (PARENT.document.getElementById(SCRIPT_ID)) {
+                return;
+            }
+            const script = PARENT.document.createElement("script");
+            script.id = SCRIPT_ID;
+            script.src = "https://app.chatbots.gms-worldwide.ch/widget/common.js";
+            script.async = true;
+            script.dataset.widgetId = "af0fd971719e67d7a9b40f4a7c4711b1";
+            (PARENT.document.head || PARENT.document.body || PARENT.document.documentElement).appendChild(script);
+        })();
+        </script>        """,
         height=0,
     )
     st.session_state.chat_widget_loaded = True
